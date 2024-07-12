@@ -5,8 +5,7 @@ function TrackerPage({ip}) {
 
   useEffect(() => {
     const fetchIp = async () => {
-      const headers = new Headers();
-      const response = await fetch('/api/tracker', { headers });
+      const response = await fetch('/api/tracker');
       const data = await response.json();
       setIpAddress(data);
     };
