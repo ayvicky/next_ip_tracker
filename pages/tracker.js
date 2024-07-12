@@ -10,10 +10,10 @@ function TrackerPage({ip}) {
         const data = await response.json();
         setIpAddress(data);
       };
+      fetchIp();
     } catch(e) {
       console.log({e})
     }
-    fetchIp();
   }, []);
 
   return (
