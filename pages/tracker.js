@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-function TrackerPage({ip, ip2}) {
+function TrackerPage({ip}) {
   // const [ip, setIp] = useState(null);
 
   // useEffect(() => {
@@ -16,7 +16,7 @@ function TrackerPage({ip, ip2}) {
   return (
     <div>
       {ip ? (
-        <p>Your IP address is: {ip} - {ip2}</p>
+        <p>Your IP address is: {ip}</p>
       ) : (
         <p>Loading IP...</p>
       )}
@@ -27,10 +27,10 @@ function TrackerPage({ip, ip2}) {
 export async function getServerSideProps(context) {
   const { req } = context;
   const forwarded = req.headers["x-forwarded-for"]
-  const ip2 = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
+  const ip = forwarded ? forwarded.split(/, /)[0] : req.connection.remoteAddress
 
-  const ip = req.headers["x-real-ip"] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  return { props: { ip, ip2 } };
+  // const ip = req.headers["x-real-ip"] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  return { props: { ip} };
 }
 
 export default TrackerPage;
