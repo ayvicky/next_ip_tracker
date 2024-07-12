@@ -4,11 +4,15 @@ function TrackerPage({ip}) {
   const [ipAddress, setIpAddress] = useState(null);
 
   useEffect(() => {
-    const fetchIp = async () => {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tracker`);
-      const data = await response.json();
-      setIpAddress(data);
-    };
+    try{
+      const fetchIp = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/tracker`);
+        const data = await response.json();
+        setIpAddress(data);
+      };
+    } catch(e) {
+      console.log({e})
+    }
     fetchIp();
   }, []);
 
