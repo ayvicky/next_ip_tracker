@@ -1,22 +1,22 @@
 import {useState, useEffect} from 'react';
 
 function TrackerPage({ip}) {
-  // const [ip, setIp] = useState(null);
+  const [ipAddress, setIpAddress] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchIp = async () => {
-  //     const headers = new Headers();
-  //     const response = await fetch('/api/get-ip-address', { headers });
-  //     const data = await response.json();
-  //     setIp(data);
-  //   };
-  //   fetchIp();
-  // }, []);
+  useEffect(() => {
+    const fetchIp = async () => {
+      const headers = new Headers();
+      const response = await fetch('/api/tracker', { headers });
+      const data = await response.json();
+      setIpAddress(data);
+    };
+    fetchIp();
+  }, []);
 
   return (
     <div>
       {ip ? (
-        <p>Your IP address is: {ip}</p>
+        <p>Your IP address is: {ip} - {ipAddress}</p>
       ) : (
         <p>Loading IP...</p>
       )}
